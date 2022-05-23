@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('pokemon_types', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('pokemon_id')->unsigned();
-            $table->integer('type_id')->unsigned();
+            $table->bigInteger('pokemon_id')->unsigned();
+            $table->bigInteger('type_id')->unsigned();
             $table->integer('slot');
-            $table->foreign('pokemon_id')->references('id')->on('pokemons')
+            $table->foreign('pokemon_id')->references('id')->on('pokemon')
                 ->onDelete('cascade');
             $table->foreign('type_id')->references('id')->on('types')
                 ->onDelete('cascade');

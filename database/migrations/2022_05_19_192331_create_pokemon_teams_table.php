@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('pokemon_teams', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('pokemon_id')->unsigned();
-            $table->integer('stat_id')->unsigned();
-            $table->foreign('pokemon_id')->references('id')->on('pokemons')
+            $table->bigInteger('pokemon_id')->unsigned();
+            $table->bigInteger('team_id')->unsigned();
+            $table->foreign('pokemon_id')->references('id')->on('pokemon')
                 ->onDelete('cascade');
             $table->foreign('team_id')->references('id')->on('teams')
                 ->onDelete('cascade');
