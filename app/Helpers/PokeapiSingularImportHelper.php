@@ -24,12 +24,12 @@ class PokeapiSingularImportHelper
             'name' => $pokemon['name']
         ]);
 
-        $currentPokemon->height($pokemon['height']);
-        $currentPokemon->base_experience($pokemon['base_experience']);
+        $currentPokemon->height = $pokemon['height'];
+        $currentPokemon->base_experience = $pokemon['base_experience'];
 
         $currentPokemon->moves()->sync($this->importMoves($pokemon['moves']));
 
-        foreach ($currentPokemon['abilities'] as $ability) {
+        foreach ($pokemon['abilities'] as $ability) {
             $currentPokemon->abilities()->attach(
                 $this->importAbility($ability['ability']),
                 [
@@ -38,7 +38,7 @@ class PokeapiSingularImportHelper
             );
         }
 
-        foreach ($currentPokemon['stats'] as $stat) {
+        foreach ($pokemon['stats'] as $stat) {
             $currentPokemon->stats()->attach(
                 $this->importStat($stat['stat']),
                 [
@@ -47,7 +47,7 @@ class PokeapiSingularImportHelper
             );
         }
 
-        foreach ($currentPokemon['types'] as $type) {
+        foreach ($pokemon['types'] as $type) {
             $currentPokemon->types()->attach(
                 $this->importType($type['type']),
                 [
@@ -67,7 +67,7 @@ class PokeapiSingularImportHelper
             'name' => $type['name']
         ]);
 
-        $currentType->url($type['url']);
+        $currentType->url = $type['url'];
         $currentType->save();
 
         return $currentType->id;
@@ -87,7 +87,7 @@ class PokeapiSingularImportHelper
             'name' => $stat['name']
         ]);
 
-        $currentStat->url($stat['url']);
+        $currentStat->url = $stat['url'];
         $currentStat->save();
 
         return $currentStat->id;
@@ -107,7 +107,7 @@ class PokeapiSingularImportHelper
             'name' => $ability['name']
         ]);
 
-        $currentAbility->url($ability['url']);
+        $currentAbility->url = $ability['url'];
         $currentAbility->save();
 
         return $currentAbility->id;
@@ -131,7 +131,7 @@ class PokeapiSingularImportHelper
                'name' => $move['name']
             ]);
 
-            $currentMove->url($move['url']);
+            $currentMove->url = $move['url'];
 
             $currentMove->save();
             $pokemonMoves[] = $currentMove->id;

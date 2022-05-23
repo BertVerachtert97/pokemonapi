@@ -42,7 +42,6 @@ class ImportPokemonByDump extends Command
         foreach ($pokemons as $pokemon) {
             $name = $importHelper->importPokemon($pokemon);
 
-            $this->info('Succesfully import pokemon with name: ' . $name);
             $bar->advance();
         }
 
