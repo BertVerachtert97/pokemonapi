@@ -9,6 +9,8 @@ class Pokemon extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     /**
      * The moves that belong to the pokemon.
      *
@@ -48,7 +50,7 @@ class Pokemon extends Model
      */
     public function stats()
     {
-        return $this->belongsToMany(Type::class, 'pokemon_stats')
+        return $this->belongsToMany(Stat::class, 'pokemon_stats')
             ->withPivot('base_stat');
     }
 }

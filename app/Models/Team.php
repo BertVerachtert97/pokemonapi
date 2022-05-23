@@ -9,6 +9,8 @@ class Team extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     /**
      * The pokemons that belong to the team.
      *

@@ -9,6 +9,8 @@ class Move extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     /**
      * Get the pokemons that belongs to the ability.
      *

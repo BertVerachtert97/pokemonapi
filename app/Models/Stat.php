@@ -9,6 +9,8 @@ class Stat extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     /**
      * The pokemons that belong to the stat.
      *
