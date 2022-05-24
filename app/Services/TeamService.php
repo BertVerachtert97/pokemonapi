@@ -49,4 +49,27 @@ class TeamService
             'pokemons' => $pokemons
         ];
     }
+
+    public function createTeam($name)
+    {
+        $team = Team::firstOrNew([
+           'name' => $name
+        ]);
+
+        $team->save();
+
+        $pokemons = [];
+
+        if (!empty($team->pokemons)) {
+            foreach ($team->pokemons as $pokemon) {
+                $pokemons[] = $pokemon->name;
+            }
+        }
+
+        return [
+            'id' => $team->id,
+            'name' => $team->name,
+            'pokemons' => $pokemons
+        ];
+    }
 }

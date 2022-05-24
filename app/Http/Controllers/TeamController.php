@@ -39,4 +39,20 @@ class TeamController extends Controller
 
         return new Response(json_encode($team), 200);
     }
+
+    public function createTeam(Request $request)
+    {
+        if (empty($request->all())) {
+            return new Response(json_encode([
+                'error' => 'Missing name',
+                'error_message' => 'Missing name in the body'
+            ]), 404);
+        }
+
+        $requestArray = $request->all();
+
+        $team = $this->teamService->createTeam($requestArray['name']);
+
+        return new Response(json_encode($team), 201);
+    }
 }
