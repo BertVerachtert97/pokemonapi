@@ -42,6 +42,9 @@ class PokemonService
             }
             $pokemonJson[] = [
                 'id' => $pokemon->id,
+                'sprites' => [
+                    'front_default' => $pokemon->sprite->front_default
+                ],
                 'name' => $pokemon->name,
                 'types' => $types,
             ];
