@@ -19,6 +19,7 @@ return new class extends Migration
             $table->bigInteger('pokemon_id')->unsigned();
             $table->bigInteger('ability_id')->unsigned();
             $table->integer('slot');
+            $table->boolean('is_hidden');
             $table->foreign('pokemon_id')->references('id')->on('pokemon')
                 ->onDelete('cascade');
             $table->foreign('ability_id')->references('id')->on('abilities')

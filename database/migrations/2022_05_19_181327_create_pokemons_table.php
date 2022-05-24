@@ -17,7 +17,11 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
+            $table->string('species');
+            $table->string('form');
             $table->integer('height');
+            $table->integer('weight');
+            $table->integer('order');
             $table->integer('base_experience');
         });
     }

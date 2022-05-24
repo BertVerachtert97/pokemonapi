@@ -19,6 +19,7 @@ return new class extends Migration
             $table->bigInteger('pokemon_id')->unsigned();
             $table->bigInteger('stat_id')->unsigned();
             $table->integer('base_stat');
+            $table->integer('effort');
             $table->foreign('pokemon_id')->references('id')->on('pokemon')
                 ->onDelete('cascade');
             $table->foreign('stat_id')->references('id')->on('stats')
