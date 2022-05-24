@@ -29,7 +29,7 @@ class Pokemon extends Model
     public function abilities()
     {
         return $this->belongsToMany(Ability::class, 'pokemon_abilities')
-            ->withPivot('slot');;
+            ->withPivot('slot', 'is_hidden');
     }
 
     /**
@@ -51,6 +51,6 @@ class Pokemon extends Model
     public function stats()
     {
         return $this->belongsToMany(Stat::class, 'pokemon_stats')
-            ->withPivot('base_stat');
+            ->withPivot('base_stat', 'effort');
     }
 }

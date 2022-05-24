@@ -43,10 +43,66 @@ class PokemonService
             $pokemonJson[] = [
                 'id' => $pokemon->id,
                 'name' => $pokemon->name,
-                'types' => $types
+                'types' => $types,
             ];
         }
 
         return $pokemonJson;
+    }
+
+    public function getPokemonById($pokemonId)
+    {
+        $pokemon = Pokemon::find($pokemonId);
+
+        if (empty($pokemon)) {
+            return [];
+        }
+
+        $types = [];
+        foreach ($pokemon->types as $type) {
+            $types[] = [
+                'type' => $type->name,
+                'slot' => $type->pivot->slot,
+            ];
+        }
+
+        $moves = [];
+        foreach ($pokemon->moves as $move) {
+            $moves[] = [
+                'move' => $move->name,
+            ];
+        }
+
+        $stats = [];
+        foreach ($pokemon->stats as $stat) {
+            $stats[] = [
+                'stat' => $stat->name,
+                'base_stat' => $stat->pivot->base_stat,
+                'effort' => $stat->pivot->effort,
+            ];
+        }
+
+        $abilities = [];
+        foreach ($pokemon->abilities as $ability) {
+            $abilities[] = [
+                'ability' => $ability->name,
+                'is_hidden' => $ability->pivot->is_hidden === 1,
+                'slot' => $ability->pivot->slot,
+            ];
+        }
+
+        return [
+            'id' => $pokemon->id,
+            'name' => $pokemon->name,
+            'types' => $types,
+            'height' => $pokemon->height,
+            'weight' => $pokemon->weight,
+            'moves' => $moves,
+            'order' => $pokemon->order,
+            'species' => $pokemon->species,
+            'stats' => $stats,
+            'abilities' => $abilities,
+            'form' => $pokemon->form,
+        ];
     }
 }

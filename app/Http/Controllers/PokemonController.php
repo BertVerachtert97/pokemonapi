@@ -27,4 +27,20 @@ class PokemonController extends Controller
 
         return new Response(json_encode($pokemons), 200);
     }
+
+    public function getPokemonById(Request $request)
+    {
+        $pokemonId = $request->id;
+
+        $pokemon = $this->pokemonService->getPokemonById($pokemonId);
+
+        if (empty($pokemon)) {
+            return new Response(json_encode([
+                'error' => 'Not found',
+                'error_message' => 'Cannot find pokemon with id: ' . $pokemonId
+            ]), 404);
+        }
+
+        return new Response(json_encode($pokemon), 200);
+    }
 }
