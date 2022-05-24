@@ -52,6 +52,7 @@ class PokemonService
 
     public function getPokemonById($pokemonId)
     {
+        /** @var Pokemon $pokemon */
         $pokemon = Pokemon::find($pokemonId);
 
         if (empty($pokemon)) {
@@ -91,9 +92,21 @@ class PokemonService
             ];
         }
 
+        $sprite = [
+            'front_default' => $pokemon->sprite->front_default,
+            'front_female' => $pokemon->sprite->front_female,
+            'front_shiny' => $pokemon->sprite->front_shiny,
+            'front_shiny_female' => $pokemon->sprite->front_shiny_female,
+            'black_default' => $pokemon->sprite->black_default,
+            'black_female' =>$pokemon->sprite->black_female,
+            'black_shiny' => $pokemon->sprite->black_shiny,
+            'black_shiny_female' => $pokemon->sprite->black_shiny_defualt,
+        ];
+
         return [
             'id' => $pokemon->id,
             'name' => $pokemon->name,
+            'sprites' => $sprite,
             'types' => $types,
             'height' => $pokemon->height,
             'weight' => $pokemon->weight,

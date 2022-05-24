@@ -5,6 +5,7 @@ namespace App\Helpers;
 use App\Models\Ability;
 use App\Models\Move;
 use App\Models\Pokemon;
+use App\Models\Sprite;
 use App\Models\Stat;
 use App\Models\Type;
 
@@ -32,6 +33,10 @@ class PokeapiSingularImportHelper
         $currentPokemon->base_experience = $pokemon['base_experience'];
 
         $currentPokemon->save();
+
+        $sprite = $this->importSprite($currentPokemon, $pokemon['sprites']);
+
+        $currentPokemon->sprite()->save($sprite);
 
         $currentPokemon->moves()->sync($this->importMoves($pokemon['moves']));
 
@@ -68,6 +73,19 @@ class PokeapiSingularImportHelper
         }
 
         return $currentPokemon->name;
+    }
+
+    private function importSprite($pokemon, $sprites)
+    {
+        $currentSprite = Sprite::firstOrNew([
+            'pokemon_id' => $pokemon->id
+        ]);
+
+        foreach ($sprites as $key => $sprite) {
+            $currentSprite->$key = $sprite;
+        }
+
+        return $currentSprite;
     }
 
     private function importType($type)

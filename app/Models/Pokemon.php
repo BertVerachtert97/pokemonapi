@@ -53,4 +53,14 @@ class Pokemon extends Model
         return $this->belongsToMany(Stat::class, 'pokemon_stats')
             ->withPivot('base_stat', 'effort');
     }
+
+    /**
+     * The sprite of the pokemon
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function sprite()
+    {
+        return $this->hasOne(Sprite::class);
+    }
 }
