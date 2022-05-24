@@ -28,4 +28,25 @@ class TeamService
 
         return $teamJson;
     }
+
+    public function getTeamById($teamId)
+    {
+        $team = Team::find($teamId);
+
+        if (empty($team)) {
+            return [];
+        }
+
+        $pokemons = [];
+
+        foreach ($team->pokemons as $pokemon) {
+            $pokemons[] = $pokemon->name;
+        }
+
+        return [
+            'id' => $team->id,
+            'name' => $team->name,
+            'pokemons' => $pokemons
+        ];
+    }
 }
