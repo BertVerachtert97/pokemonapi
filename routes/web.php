@@ -20,3 +20,5 @@ Route::get('/', function () {
 Route::get('/api/v1/pokemons', [\App\Http\Controllers\PokemonController::class, 'getPokemons']);
 
 Route::get('/api/v1/pokemons/{id}', [\App\Http\Controllers\PokemonController::class, 'getPokemonById']);
+
+Route::get('/api/v1/teams', [\App\Http\Controllers\TeamController::class, 'getTeams']);
