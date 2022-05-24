@@ -82,6 +82,9 @@ class PokeapiSingularImportHelper
         ]);
 
         foreach ($sprites as $key => $sprite) {
+            if ($key === 'versions' || $key === 'other') {
+                continue;
+            }
             $currentSprite->$key = $sprite;
         }
 

@@ -97,10 +97,10 @@ class PokemonService
             'front_female' => $pokemon->sprite->front_female,
             'front_shiny' => $pokemon->sprite->front_shiny,
             'front_shiny_female' => $pokemon->sprite->front_shiny_female,
-            'black_default' => $pokemon->sprite->black_default,
-            'black_female' =>$pokemon->sprite->black_female,
-            'black_shiny' => $pokemon->sprite->black_shiny,
-            'black_shiny_female' => $pokemon->sprite->black_shiny_defualt,
+            'back_default' => $pokemon->sprite->back_default,
+            'back_female' =>$pokemon->sprite->back_female,
+            'back_shiny' => $pokemon->sprite->back_shiny,
+            'back_shiny_female' => $pokemon->sprite->back_shiny_defualt,
         ];
 
         return [
