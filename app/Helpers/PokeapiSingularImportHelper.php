@@ -27,8 +27,11 @@ class PokeapiSingularImportHelper
         $currentPokemon->height = $pokemon['height'];
         $currentPokemon->base_experience = $pokemon['base_experience'];
 
+        $currentPokemon->save();
+
         $currentPokemon->moves()->sync($this->importMoves($pokemon['moves']));
 
+        $currentPokemon->abilities()->detach();
         foreach ($pokemon['abilities'] as $ability) {
             $currentPokemon->abilities()->attach(
                 $this->importAbility($ability['ability']),
@@ -38,6 +41,7 @@ class PokeapiSingularImportHelper
             );
         }
 
+        $currentPokemon->stats()->detach();
         foreach ($pokemon['stats'] as $stat) {
             $currentPokemon->stats()->attach(
                 $this->importStat($stat['stat']),
@@ -47,6 +51,7 @@ class PokeapiSingularImportHelper
             );
         }
 
+        $currentPokemon->types()->detach();
         foreach ($pokemon['types'] as $type) {
             $currentPokemon->types()->attach(
                 $this->importType($type['type']),
@@ -55,8 +60,6 @@ class PokeapiSingularImportHelper
                 ]
             );
         }
-
-        $currentPokemon->save();
 
         return $currentPokemon->name;
     }
