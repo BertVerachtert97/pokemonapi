@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Pokemon;
 use App\Models\Type;
+use Illuminate\Database\Eloquent\Builder;
 
 class PokemonService
 {
@@ -34,30 +35,7 @@ class PokemonService
                 break;
         }
 
-        $pokemonJson = [];
-        /** @var Pokemon $pokemon */
-        foreach ($pokemons as $pokemon) {
-            $types = [];
-            /** @var Type $type */
-            foreach ($pokemon->types as $type) {
-                $types[] = [
-                    'type' => [
-                        'name' => $type->name,
-                    ],
-                    'slot' => $type->pivot->slot,
-                ];
-            }
-            $pokemonJson[] = [
-                'id' => $pokemon->id,
-                'sprites' => [
-                    'front_default' => $pokemon->sprite->front_default
-                ],
-                'name' => $pokemon->name,
-                'types' => $types,
-            ];
-        }
-
-        return $pokemonJson;
+        return $this->wrapPokemons($pokemons);
     }
 
     /**
@@ -134,5 +112,65 @@ class PokemonService
             'abilities' => $abilities,
             'form' => $pokemon->form,
         ];
+    }
+
+    /**
+     * Get the pokemons by query
+     *
+     * @param $query
+     * @param $limit
+     *
+     * @return array
+     */
+    public function getPokemonsByQuery($query, $limit)
+    {
+        if ($limit === '') {
+            $pokemons = Pokemon::where('name', 'like', '%' . $query . '%')
+                ->orWhereHas('types', function (Builder $builder) use ($query) {
+                    $builder->where('name', 'like', '%' . $query . '%');
+                })->get();
+        } else {
+            $pokemons = Pokemon::where('name', 'like', '%' . $query . '%')
+                ->orWhereHas('types', function (Builder $builder) use ($query) {
+                    $builder->where('name', 'like', '%' . $query . '%');
+                })->limit($limit)->get();
+        }
+
+        return $this->wrapPokemons($pokemons);
+    }
+
+    /**
+     * Wrap the pokemons in an array
+     *
+     * @param $pokemons
+     *
+     * @return array
+     */
+    private function wrapPokemons($pokemons)
+    {
+        $pokemonJson = [];
+        /** @var Pokemon $pokemon */
+        foreach ($pokemons as $pokemon) {
+            $types = [];
+            /** @var Type $type */
+            foreach ($pokemon->types as $type) {
+                $types[] = [
+                    'type' => [
+                        'name' => $type->name,
+                    ],
+                    'slot' => $type->pivot->slot,
+                ];
+            }
+            $pokemonJson[] = [
+                'id' => $pokemon->id,
+                'sprites' => [
+                    'front_default' => $pokemon->sprite->front_default
+                ],
+                'name' => $pokemon->name,
+                'types' => $types,
+            ];
+        }
+
+        return $pokemonJson;
     }
 }

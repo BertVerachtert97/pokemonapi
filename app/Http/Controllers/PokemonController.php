@@ -57,4 +57,29 @@ class PokemonController extends Controller
 
         return new Response(json_encode($pokemon), 200);
     }
+
+    /**
+     * Get pokemons by search
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function getPokemonsBySearch(Request $request)
+    {
+        $query = $request->get('query');
+        $limit = '';
+
+        if ($request->exists('limit')) {
+            $limit = $request->get('limit');
+        }
+
+        $pokemons = $this->pokemonService->getPokemonsByQuery($query, $limit);
+
+        if (empty($pokemons)) {
+            return new Response(json_encode('No pokemons found'), 200);
+        }
+
+        return new Response(json_encode($pokemons), 200);
+    }
 }
