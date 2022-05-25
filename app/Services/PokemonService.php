@@ -7,6 +7,13 @@ use App\Models\Type;
 
 class PokemonService
 {
+    /**
+     * Get all pokemons
+     *
+     * @param $orderBy
+     *
+     * @return array
+     */
     public function getPokemons($orderBy)
     {
         switch ($orderBy) {
@@ -53,6 +60,13 @@ class PokemonService
         return $pokemonJson;
     }
 
+    /**
+     * Get pokemon by id
+     *
+     * @param $pokemonId
+     *
+     * @return array
+     */
     public function getPokemonById($pokemonId)
     {
         /** @var Pokemon $pokemon */

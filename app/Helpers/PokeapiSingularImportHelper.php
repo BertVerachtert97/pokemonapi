@@ -75,6 +75,15 @@ class PokeapiSingularImportHelper
         return $currentPokemon->name;
     }
 
+    /**
+     * Import a sprite per pokemon.
+     * Create a new sprite if it doesn't exist.
+     *
+     * @param Pokemon $pokemon
+     * @param $sprites
+     *
+     * @return mixed
+     */
     private function importSprite($pokemon, $sprites)
     {
         $currentSprite = Sprite::firstOrNew([
@@ -91,6 +100,14 @@ class PokeapiSingularImportHelper
         return $currentSprite;
     }
 
+    /**
+     * Import each type per pokemon.
+     * Create a new type if it doesn't exist.
+     *
+     * @param $type
+     *
+     * @return mixed
+     */
     private function importType($type)
     {
         $currentType = Type::firstOrNew([

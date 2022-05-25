@@ -6,6 +6,11 @@ use App\Models\Team;
 
 class TeamService
 {
+    /**
+     * Get all teams
+     *
+     * @return array
+     */
     public function getTeams()
     {
         $teams = Team::all();
@@ -29,6 +34,13 @@ class TeamService
         return $teamJson;
     }
 
+    /**
+     * Get team by id
+     *
+     * @param $teamId
+     *
+     * @return array
+     */
     public function getTeamById($teamId)
     {
         $team = Team::find($teamId);
@@ -50,6 +62,13 @@ class TeamService
         ];
     }
 
+    /**
+     * Create a team by name
+     *
+     * @param $name
+     *
+     * @return array
+     */
     public function createTeam($name)
     {
         $team = Team::firstOrNew([

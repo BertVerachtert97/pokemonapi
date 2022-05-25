@@ -13,6 +13,11 @@ class TeamController extends Controller
     {
     }
 
+    /**
+     * Get all the teams
+     *
+     * @return Response
+     */
     public function getTeams()
     {
         $teams = $this->teamService->getTeams();
@@ -24,6 +29,13 @@ class TeamController extends Controller
         return  new Response(json_encode($teams), 200);
     }
 
+    /**
+     * Get a team by id
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
     public function getTeamById(Request $request)
     {
         $teamId = $request->id;
@@ -40,6 +52,13 @@ class TeamController extends Controller
         return new Response(json_encode($team), 200);
     }
 
+    /**
+     * Create a team by name
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
     public function createTeam(Request $request)
     {
         if (empty($request->all())) {
