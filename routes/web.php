@@ -30,3 +30,5 @@ Route::get('/api/v1/teams', [\App\Http\Controllers\TeamController::class, 'getTe
 Route::get('/api/v1/teams/{id}', [\App\Http\Controllers\TeamController::class, 'getTeamById']);
 
 Route::post('/api/v1/teams', [\App\Http\Controllers\TeamController::class, 'createTeam']);
+
+\Aschmelyun\Larametrics\Larametrics::routes();

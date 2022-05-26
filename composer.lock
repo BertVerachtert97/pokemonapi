@@ -4,8 +4,56 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "31d5a87ba3d7f28bde75670b87c7766c",
+    "content-hash": "a1a6a41829cb4a94383c914f4547f72a",
     "packages": [
+        {
+            "name": "aschmelyun/larametrics",
+            "version": "1.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aschmelyun/larametrics.git",
+                "reference": "2b8e435d4d8d4ab9fa3a73b1b41264a3732cb08c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aschmelyun/larametrics/zipball/2b8e435d4d8d4ab9fa3a73b1b41264a3732cb08c",
+                "reference": "2b8e435d4d8d4ab9fa3a73b1b41264a3732cb08c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Aschmelyun\\Larametrics\\LarametricsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Aschmelyun\\Larametrics\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andrew Schmelyun",
+                    "email": "me@aschmelyun.com",
+                    "homepage": "https://aschmelyun.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A self-hosted metrics and notifications platform for Laravel apps",
+            "time": "2019-09-15T22:43:38+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.9.3",
@@ -133,10 +181,6 @@
                 "swagger",
                 "ui"
             ],
-            "support": {
-                "issues": "https://github.com/DarkaOnLine/L5-Swagger/issues",
-                "source": "https://github.com/DarkaOnLine/L5-Swagger/tree/8.3.2"
-            },
             "funding": [
                 {
                     "url": "https://github.com/DarkaOnLine",
@@ -286,10 +330,6 @@
                 "docblock",
                 "parser"
             ],
-            "support": {
-                "issues": "https://github.com/doctrine/annotations/issues",
-                "source": "https://github.com/doctrine/annotations/tree/1.13.2"
-            },
             "time": "2021-08-05T19:00:23+00:00"
         },
         {
@@ -2268,9 +2308,6 @@
                 "psr",
                 "psr-6"
             ],
-            "support": {
-                "source": "https://github.com/php-fig/cache/tree/3.0.0"
-            },
             "time": "2021-02-03T23:26:27+00:00"
         },
         {
@@ -2985,10 +3022,6 @@
                 "swagger",
                 "ui"
             ],
-            "support": {
-                "issues": "https://github.com/swagger-api/swagger-ui/issues",
-                "source": "https://github.com/swagger-api/swagger-ui/tree/v4.11.1"
-            },
             "time": "2022-05-13T15:41:25+00:00"
         },
         {
@@ -5135,9 +5168,6 @@
             ],
             "description": "Loads and dumps YAML files",
             "homepage": "https://symfony.com",
-            "support": {
-                "source": "https://github.com/symfony/yaml/tree/v6.0.3"
-            },
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -5490,10 +5520,6 @@
                 "rest",
                 "service discovery"
             ],
-            "support": {
-                "issues": "https://github.com/zircote/swagger-php/issues",
-                "source": "https://github.com/zircote/swagger-php/tree/4.4.2"
-            },
             "time": "2022-05-13T23:51:07+00:00"
         }
     ],
@@ -8167,5 +8193,5 @@
         "php": "^8.0.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "1.1.0"
 }
