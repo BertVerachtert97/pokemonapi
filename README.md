@@ -17,8 +17,6 @@ For importing a singular pokemon run ./vendor/bin/sail artisan pokemon:import-si
 
 For accessing Swagger go to http://localhost/api/documentation
 
-Change the file in the explore input to http://localhost/docs/openapi.yaml
-
 ## Metrics
 
 For accessing the metrics go to http://localhost/metrics
