@@ -91,4 +91,25 @@ class TeamService
             'pokemons' => $pokemons
         ];
     }
+
+    /**
+     * Add pokemons to a team
+     *
+     * @param $pokemons
+     * @param $teamId
+     *
+     * @return array
+     */
+    public function addPokemonsToTeam($pokemons, $teamId) {
+        /** @var Team $team */
+        $team = Team::find($teamId);
+
+        $team->pokemons()->sync($pokemons);
+
+        return [
+            'id' => $teamId,
+            'name' => $team->name,
+            'pokemons' => $pokemons,
+        ];
+    }
 }

@@ -74,4 +74,34 @@ class TeamController extends Controller
 
         return new Response(json_encode($team), 201);
     }
+
+    /**
+     * Add pokemons to a team
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response|void
+     */
+    public function addPokemonToTeam(Request $request) {
+        if (empty($request->id)) {
+            return new Response(json_encode([
+                'error' => 'Missing id',
+                'error_message' => 'Missing id of the team'
+            ]), 404);
+        }
+
+        if (empty($request->all())) {
+            return new Response(json_encode([
+                'error' => 'Missing pokemons',
+                'error_message' => 'Missing pokemons in the body'
+            ]), 404);
+        }
+
+        $teamId = $request->id;
+        $requestArray = $request->all();
+
+        $team = $this->teamService->addPokemonsToTeam($requestArray['pokemons'], $teamId);
+
+        return new Response(json_encode($team), 200);
+    }
 }

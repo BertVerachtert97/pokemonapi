@@ -31,4 +31,6 @@ Route::get('/api/v1/teams/{id}', [\App\Http\Controllers\TeamController::class, '
 
 Route::post('/api/v1/teams', [\App\Http\Controllers\TeamController::class, 'createTeam']);
 
+Route::post('/api/v1/teams/{id}', [\App\Http\Controllers\TeamController::class, 'addPokemonToTeam']);
+
 \Aschmelyun\Larametrics\Larametrics::routes();
