@@ -140,6 +140,60 @@ class PokemonService
     }
 
     /**
+     * Get all pokemons paginated
+     *
+     * @param $orderBy
+     * @param $limit
+     *
+     * @return array
+     */
+    public function getPokemonsPaginated($orderBy, $limit)
+    {
+        switch ($orderBy) {
+            case 'name-asc':
+                $pokemons = Pokemon::orderBy('name', 'asc')->paginate($limit);
+                break;
+            case 'name-desc':
+                $pokemons = Pokemon::orderBy('name', 'desc')->paginate($limit);
+                break;
+            case 'id-asc':
+                $pokemons = Pokemon::orderBy('id', 'asc')->paginate($limit);
+                break;
+            case 'id-desc':
+                $pokemons = Pokemon::orderBy('id', 'desc')->paginate($limit);
+                break;
+            default:
+                $pokemons = Pokemon::paginate($limit);
+                break;
+        }
+
+        $next = '';
+        if ($pokemons->currentPage() < $pokemons->lastPage()) {
+            $next = route('pokemons.paginated') . '?page='
+                . $pokemons->currentPage() + 1 . (($limit !== 10) ? '&limit=' . $limit : '')
+                . (($orderBy !== '') ? '&sort=' . $orderBy : '');
+        }
+
+        $previous = '';
+        if ($pokemons->currentPage() > 1) {
+            $previous = route('pokemons.paginated') . '?page='
+                . $pokemons->currentPage() - 1 . (($limit !== 10) ? '&limit=' . $limit : '')
+                . (($orderBy !== '') ? '&sort=' . $orderBy : '');
+        }
+
+        return [
+            'data' => $this->wrapPokemons($pokemons->items()),
+            'metadata' => [
+                'next' => $next,
+                'previous' => $previous,
+                'total' => $pokemons->total(),
+                'pages' => $pokemons->lastPage(),
+                'page' => $pokemons->currentPage()
+            ]
+        ];
+    }
+
+    /**
      * Wrap the pokemons in an array
      *
      * @param $pokemons
